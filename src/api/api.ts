@@ -13,6 +13,11 @@ export const fetchRandomJokes = async (count: number): Promise<Joke[]> => {
     params: {
       count: count,
     },
+  }).catch((error) => {
+    if (error.response && error.response.status === 429) {
+      throw new Error('You have reached the API request limit. Please try again later.');
+    }
+    throw error;
   });
 
   const results = response.data.body;
