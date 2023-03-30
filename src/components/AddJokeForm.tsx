@@ -37,7 +37,7 @@ const AddJokeForm: React.FC<AddJokeFormProps> = ({ onAddJoke }) => {
           placeholder="Enter a joke"
           className="w-96 p-2 mr-2 rounded border border-gray-300 dark:border-gray-600 dark:bg-gray-800 focus:outline-none focus:border-blue-300 dark:focus:border-blue-500"
         />
-        <button type="submit" className="ml-auto whitespace-no-wrap">
+        <button type="submit" className="ml-auto whitespace-no-wrap ">
           Add Joke
         </button>
       </div>
