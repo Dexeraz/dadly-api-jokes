@@ -7,7 +7,7 @@ interface AddJokeFormProps {
 
 const AddJokeForm: React.FC<AddJokeFormProps> = ({ onAddJoke }) => {
   const [joke, setJoke] = useState<Joke>({
-    id: 0,
+    id: "",
     joke: "",
   });
 
@@ -22,7 +22,7 @@ const AddJokeForm: React.FC<AddJokeFormProps> = ({ onAddJoke }) => {
     event.preventDefault();
     onAddJoke(joke);
     setJoke({
-      id: 0,
+      id: "",
       joke: "",
     });
   };
