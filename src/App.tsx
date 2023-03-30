@@ -7,6 +7,7 @@ import { fetchRandomJokes } from "./api/api";
 const App: React.FC = () => {
   const [jokes, setJokes] = useState<Joke[]>([]);
   const [loading, setLoading] = useState<boolean>(false); // Add this line
+  const [favorites, setFavorites] = useState<Joke[]>([]);
 
   useEffect(() => {
     fetchNewJokes();
@@ -29,6 +30,10 @@ const App: React.FC = () => {
     setLoading(false);
   };
 
+  const addToFavorites = (joke: Joke) => {
+    setFavorites((prevFavorites) => [...prevFavorites, joke]);
+  };
+
   return (
     <div className="min-h-screen bg-gray-100 dark:bg-gray-900 flex flex-col items-center justify-center">
       <h1 className="text-4xl font-bold mb-8">Dadly Jokes App</h1>
@@ -37,13 +42,15 @@ const App: React.FC = () => {
           {" "}
           {loading && <div className="spinner mt-4"></div>}
         </div>
-        <JokeList jokes={jokes} />
+        <JokeList jokes={jokes} addToFavorites={addToFavorites} />
+        <h2 className="text-2xl font-bold mb-4">Favorite Jokes</h2>
         <AddJokeForm onAddJoke={handleAddJoke} />
         <div className="flex justify-end	">
           <button onClick={fetchNewJokes} className="mt-4 py-2 px-4">
             New Jokes
           </button>
         </div>
+        <JokeList jokes={favorites} addToFavorites={() => {}} />
       </div>
     </div>
   );
