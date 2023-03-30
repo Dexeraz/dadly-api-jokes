@@ -1,14 +1,11 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { Joke } from "../types/Joke";
-import { fetchRandomJokes } from "../api/api";
 
-const JokeList: React.FC = () => {
-  const [jokes, setJokes] = useState<Joke[]>([]);
+interface JokeListProps {
+  jokes: Joke[];
+}
 
-  useEffect(() => {
-    fetchRandomJokes(5).then(setJokes);
-  }, []);
-
+const JokeList: React.FC<JokeListProps> = ({ jokes }) => {
   return (
     <div>
       {jokes.map((joke) => (

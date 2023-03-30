@@ -28,9 +28,15 @@ const AddJokeForm: React.FC<AddJokeFormProps> = ({ onAddJoke }) => {
       url: "",
     });
   };
+
   return (
     <form onSubmit={handleSubmit}>
-      <input type="text" value={joke.joke} onChange={handleJokeChange} />
+      <input
+        type="text"
+        value={joke.joke}
+        onChange={handleJokeChange}
+        placeholder="Enter a joke"
+      />
       <button type="submit">Add Joke</button>
     </form>
   );

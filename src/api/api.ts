@@ -13,8 +13,8 @@ export const fetchRandomJokes = async (count: number): Promise<Joke[]> => {
     },
   });
 
-  return response.data.results.map((result: any) => ({
-    id: result.id,
+  return response.data.results.map((result: any, index: number) => ({
+    id: index, 
     joke: result.joke,
   }));
 };

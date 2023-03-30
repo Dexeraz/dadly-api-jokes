@@ -1,7 +1,7 @@
-import React, { useState } from "react";
-import AddJokeForm from "./components/AddJokeForm";
-import JokeList from "./components/JokeList";
-import { Joke } from "./types/Joke";
+import React, { useState } from 'react';
+import AddJokeForm from './components/AddJokeForm';
+import JokeList from './components/JokeList';
+import { Joke } from './types/Joke';
 
 const App: React.FC = () => {
   const [jokes, setJokes] = useState<Joke[]>([]);
@@ -12,7 +12,7 @@ const App: React.FC = () => {
 
   return (
     <div>
-      <JokeList />
+      <JokeList jokes={jokes} />
       <AddJokeForm onAddJoke={handleAddJoke} />
     </div>
   );
