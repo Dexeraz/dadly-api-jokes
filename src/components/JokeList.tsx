@@ -15,7 +15,7 @@ const JokeList: React.FC<JokeListProps> = ({ jokes, addToFavorites }) => {
           className="p-4 bg-white dark:bg-gray-800 rounded shadow flex justify-between items-center"
         >
           <p className="text-xl">{joke.joke}</p>
-          <button onClick={() => addToFavorites(joke)}>Add to favorites</button>
+          <button onClick={() => addToFavorites(joke)}>⭐</button>
         </div>
       ))}
     </div>
