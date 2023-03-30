@@ -7,7 +7,10 @@ import { fetchRandomJokes } from "./api/api";
 const App: React.FC = () => {
   const [jokes, setJokes] = useState<Joke[]>([]);
   const [loading, setLoading] = useState<boolean>(false); // Add this line
-  const [favorites, setFavorites] = useState<Joke[]>([]);
+  const [favorites, setFavorites] = useState<Joke[]>(() => {
+    const savedFavorites = localStorage.getItem("favorites");
+    return savedFavorites ? JSON.parse(savedFavorites) : [];
+  });
 
   useEffect(() => {
     fetchNewJokes();
@@ -31,21 +34,31 @@ const App: React.FC = () => {
   };
 
   const addToFavorites = (joke: Joke) => {
-    setFavorites((prevFavorites) => [...prevFavorites, joke]);
+    setFavorites((prevFavorites) => {
+      const newFavorites = [...prevFavorites, joke];
+      localStorage.setItem("favorites", JSON.stringify(newFavorites));
+      return newFavorites;
+    });
   };
 
   const editJoke = (updatedJoke: Joke) => {
-    setFavorites((prevFavorites) =>
-      prevFavorites.map((joke) =>
+    setFavorites((prevFavorites) => {
+      const newFavorites = prevFavorites.map((joke) =>
         joke.id === updatedJoke.id ? updatedJoke : joke
-      )
-    );
+      );
+      localStorage.setItem("favorites", JSON.stringify(newFavorites));
+      return newFavorites;
+    });
   };
 
   const deleteJoke = (jokeToDelete: Joke) => {
-    setFavorites((prevFavorites) =>
-      prevFavorites.filter((joke) => joke.id !== jokeToDelete.id)
-    );
+    setFavorites((prevFavorites) => {
+      const newFavorites = prevFavorites.filter(
+        (joke) => joke.id !== jokeToDelete.id
+      );
+      localStorage.setItem("favorites", JSON.stringify(newFavorites));
+      return newFavorites;
+    });
   };
 
   return (
