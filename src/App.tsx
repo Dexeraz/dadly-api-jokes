@@ -34,6 +34,11 @@ const App: React.FC = () => {
   };
 
   const addToFavorites = (joke: Joke) => {
+    if (favorites.find((fav) => fav.id === joke.id)) {
+      alert("This joke is already in your favorites list.");
+      return;
+    }
+
     setFavorites((prevFavorites) => {
       const newFavorites = [...prevFavorites, joke];
       localStorage.setItem("favorites", JSON.stringify(newFavorites));

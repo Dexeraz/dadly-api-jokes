@@ -24,6 +24,7 @@ const JokeList: React.FC<JokeListProps> = ({
   const handleSaveClick = (joke: Joke, newText: string) => {
     onEditJoke && onEditJoke({ ...joke, joke: newText });
     setEditing((prevEditing) => ({ ...prevEditing, [joke.id]: false }));
+
   };
 
   return (

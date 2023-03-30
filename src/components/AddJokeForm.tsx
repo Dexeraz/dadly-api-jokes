@@ -21,6 +21,7 @@ const AddJokeForm: React.FC<AddJokeFormProps> = ({ onAddJoke }) => {
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     if (joke.joke.trim() === "") {
+      alert("You have found a secret joke! \nWhy do QA engineers hate nature? Because there are too many 🐛! ");
       return;
     }
     onAddJoke(joke);
@@ -37,7 +38,7 @@ const AddJokeForm: React.FC<AddJokeFormProps> = ({ onAddJoke }) => {
           type="text"
           value={joke.joke}
           onChange={handleJokeChange}
-          placeholder="Enter a joke"
+          placeholder="Enter your own joke"
           className="w-96 p-2 mr-2 rounded border border-gray-300 dark:border-gray-600 dark:bg-gray-800 focus:outline-none focus:border-blue-300 dark:focus:border-blue-500"
         />
         <button type="submit" className="ml-auto whitespace-no-wrap ">
