@@ -16,8 +16,14 @@ const App: React.FC = () => {
   };
 
   const fetchNewJokes = async () => {
-    const newJokes = await fetchRandomJokes(5);
-    setJokes(newJokes);
+    try {
+      console.log("Fetching new jokes...");
+      const newJokes = await fetchRandomJokes(5);
+      console.log("New jokes:", newJokes);
+      setJokes(newJokes);
+    } catch (error) {
+      console.error("Error fetching jokes:", error);
+    }
   };
 
   return (
