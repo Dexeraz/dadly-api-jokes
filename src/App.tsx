@@ -34,6 +34,20 @@ const App: React.FC = () => {
     setFavorites((prevFavorites) => [...prevFavorites, joke]);
   };
 
+  const editJoke = (updatedJoke: Joke) => {
+    setFavorites((prevFavorites) =>
+      prevFavorites.map((joke) =>
+        joke.id === updatedJoke.id ? updatedJoke : joke
+      )
+    );
+  };
+
+  const deleteJoke = (jokeToDelete: Joke) => {
+    setFavorites((prevFavorites) =>
+      prevFavorites.filter((joke) => joke.id !== jokeToDelete.id)
+    );
+  };
+
   return (
     <div className="min-h-screen bg-gray-100 dark:bg-gray-900 flex flex-col items-center justify-center">
       <h1 className="text-4xl font-bold mb-8">Dadly Jokes App</h1>
@@ -50,7 +64,11 @@ const App: React.FC = () => {
             New Jokes
           </button>
         </div>
-        <JokeList jokes={favorites} addToFavorites={() => {}} />
+        <JokeList
+          jokes={favorites}
+          onEditJoke={editJoke}
+          onDeleteJoke={deleteJoke}
+        />
       </div>
     </div>
   );
