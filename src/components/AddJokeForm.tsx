@@ -20,6 +20,9 @@ const AddJokeForm: React.FC<AddJokeFormProps> = ({ onAddJoke }) => {
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
+    if (joke.joke.trim() === "") {
+      return;
+    }
     onAddJoke(joke);
     setJoke({
       id: "",
