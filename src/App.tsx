@@ -1,8 +1,11 @@
 import React from 'react'
+import JokeList from './components/JokeList'
 
 const App = () => {
   return (
-    <div>App</div>
+    <div>
+      <JokeList />
+    </div>
   )
 }
 
