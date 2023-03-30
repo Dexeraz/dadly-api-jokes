@@ -7,11 +7,13 @@ interface JokeListProps {
 
 const JokeList: React.FC<JokeListProps> = ({ jokes }) => {
   return (
-    <div>
+    <div className="space-y-4">
       {jokes.map((joke) => (
-        <div key={joke.id}>
-          <p>{joke.joke}</p>
-          {joke.url && <img src={joke.url} alt="Joke" />}
+        <div
+          key={joke.id} // Make sure to use the unique key 
+          className="p-4 bg-white dark:bg-gray-800 rounded shadow"
+        >
+          <p className="text-xl">{joke.joke}</p>
         </div>
       ))}
     </div>

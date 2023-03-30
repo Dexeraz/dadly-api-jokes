@@ -8,17 +8,31 @@ const App: React.FC = () => {
   const [jokes, setJokes] = useState<Joke[]>([]);
 
   useEffect(() => {
-    fetchRandomJokes(5).then((fetchedJokes) => setJokes(fetchedJokes));
+    fetchNewJokes();
   }, []);
 
   const handleAddJoke = (joke: Joke) => {
     setJokes((prevJokes) => [...prevJokes, joke]);
   };
 
+  const fetchNewJokes = async () => {
+    const newJokes = await fetchRandomJokes(5);
+    setJokes(newJokes);
+  };
+
   return (
-    <div>
-      <JokeList jokes={jokes} />
-      <AddJokeForm onAddJoke={handleAddJoke} />
+    <div className="min-h-screen bg-gray-100 dark:bg-gray-900 flex flex-col items-center justify-center">
+      <h1 className="text-4xl font-bold mb-8">Dadly Jokes App</h1>
+      <div className="w-full max-w-xl">
+        <JokeList jokes={jokes} />
+        <AddJokeForm onAddJoke={handleAddJoke} />
+        <button
+          onClick={fetchNewJokes}
+          className="mt-4 py-2 px-4"
+        >
+          Fetch New Jokes
+        </button>
+      </div>
     </div>
   );
 };

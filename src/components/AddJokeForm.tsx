@@ -9,7 +9,6 @@ const AddJokeForm: React.FC<AddJokeFormProps> = ({ onAddJoke }) => {
   const [joke, setJoke] = useState<Joke>({
     id: 0,
     joke: "",
-    url: "",
   });
 
   const handleJokeChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -25,19 +24,23 @@ const AddJokeForm: React.FC<AddJokeFormProps> = ({ onAddJoke }) => {
     setJoke({
       id: 0,
       joke: "",
-      url: "",
     });
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <input
-        type="text"
-        value={joke.joke}
-        onChange={handleJokeChange}
-        placeholder="Enter a joke"
-      />
-      <button type="submit">Add Joke</button>
+    <form onSubmit={handleSubmit} className="mt-8">
+      <div className="flex items-center">
+        <input
+          type="text"
+          value={joke.joke}
+          onChange={handleJokeChange}
+          placeholder="Enter a joke"
+          className="w-96 p-2 mr-2 rounded border border-gray-300 dark:border-gray-600 dark:bg-gray-800 focus:outline-none focus:border-blue-300 dark:focus:border-blue-500"
+        />
+        <button type="submit" className="ml-auto whitespace-no-wrap">
+          Add Joke
+        </button>
+      </div>
     </form>
   );
 };
