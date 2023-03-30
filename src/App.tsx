@@ -57,13 +57,13 @@ const App: React.FC = () => {
           {loading && <div className="spinner mt-4"></div>}
         </div>
         <JokeList jokes={jokes} addToFavorites={addToFavorites} />
-        <h2 className="text-2xl font-bold mb-4">Favorite Jokes</h2>
         <AddJokeForm onAddJoke={handleAddJoke} />
         <div className="flex justify-end	">
           <button onClick={fetchNewJokes} className="mt-4 py-2 px-4">
             New Jokes
           </button>
         </div>
+        <h2 className="text-2xl font-bold mb-4">Favorite Jokes</h2>
         <JokeList
           jokes={favorites}
           onEditJoke={editJoke}
