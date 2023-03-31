@@ -1,4 +1,4 @@
-#Dadly Jokes App
+# Dadly Jokes App
 
 Dadly Jokes App is a simple and fun React application that fetches dad jokes from the Dad Jokes API. Users can view random jokes, add their favorite jokes to a list, and manage their favorites by editing or deleting them. The favorites list is saved in the browser's session storage, so it persists as long as the user keeps the browser session open.
 
