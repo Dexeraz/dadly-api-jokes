@@ -38,7 +38,6 @@ const JokeList: React.FC<JokeListProps> = ({
             <input
               type="text"
               defaultValue={joke.joke}
-              onBlur={(e) => handleSaveClick(joke, e.target.value)}
             />
           ) : (
             <p className="text-xl">{joke.joke}</p>
