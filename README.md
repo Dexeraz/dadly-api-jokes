@@ -24,7 +24,7 @@ Delete favorite jokes
  - npm install
 
 4. Create a .env file in the root of the project and add your Dad Jokes API key:
- - API_KEY=your_api_key_here
+ - VITE_API_KEY = your_api_key_here
 
 5. Start the development server:
  - npm run dev
