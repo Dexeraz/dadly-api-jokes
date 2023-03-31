@@ -16,15 +16,17 @@ const JokeList: React.FC<JokeListProps> = ({
   onDeleteJoke,
 }) => {
   const [editing, setEditing] = useState<Record<string, boolean>>({});
+  const [editedText, setEditedText] = useState<Record<string, string>>({});
 
   const handleEditClick = (joke: Joke) => {
     setEditing((prevEditing) => ({ ...prevEditing, [joke.id]: true }));
   };
 
-  const handleSaveClick = (joke: Joke, newText: string) => {
-    onEditJoke && onEditJoke({ ...joke, joke: newText });
+  const handleSaveClick = (joke: Joke) => {
+    if (editedText[joke.id]) {
+      onEditJoke && onEditJoke({ ...joke, joke: editedText[joke.id] });
+    }
     setEditing((prevEditing) => ({ ...prevEditing, [joke.id]: false }));
-
   };
 
   return (
@@ -35,23 +37,29 @@ const JokeList: React.FC<JokeListProps> = ({
           className="p-4 bg-white dark:bg-gray-800 rounded shadow flex justify-between items-center"
         >
           {editing[joke.id] ? (
-            <input
-              type="text"
+            <textarea
               defaultValue={joke.joke}
+              onChange={(e) =>
+                setEditedText((prev) => ({
+                  ...prev,
+                  [joke.id]: e.target.value,
+                }))
+              }
+              className="w-full h-24 p-2 text-lg bg-white dark:bg-gray-800 rounded shadow flex items-center justify-between"
             />
           ) : (
             <p className="text-xl">{joke.joke}</p>
           )}
-          <div>
+          <div className="flex gap-2">
             {onEditJoke && (
               <button
                 onClick={() =>
                   editing[joke.id]
-                    ? handleSaveClick(joke, joke.joke)
+                    ? handleSaveClick(joke)
                     : handleEditClick(joke)
                 }
               >
-                {editing[joke.id] ? "Save" : "✏️"}
+                {editing[joke.id] ? "✅" : "✏️"}
               </button>
             )}
             {onDeleteJoke && (
