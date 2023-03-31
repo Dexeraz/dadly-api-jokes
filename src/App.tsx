@@ -37,29 +37,34 @@ const App: React.FC = () => {
   const handleNewJokesClick = async () => {
     setLoading(true);
     await fetchNewJokes();
-    };
-    
-    return (
+  };
+
+  return (
     <div className="min-h-screen bg-gray-100 dark:bg-gray-900 flex flex-col items-center justify-center">
-    <h1 className="text-4xl font-bold mb-8">Dadly Jokes App</h1>
-    <div className="w-full max-w-xl">
-    {loading && <LoadingIndicator />}
-    <JokeList jokes={jokes} addToFavorites={(joke) => setFavorites(addToFavorites(joke, favorites))} />
-    <AddJokeForm onAddJoke={handleAddJoke} />
-    <div className="flex justify-end">
-    <button onClick={handleNewJokesClick} className="mt-4 py-2 px-4">
-    New Jokes
-    </button>
+      <h1 className="text-4xl font-bold mb-8">Dadly Jokes App</h1>
+      <div className="w-full max-w-xl">
+        {loading && <LoadingIndicator />}
+        <JokeList
+          jokes={jokes}
+          addToFavorites={(joke) =>
+            setFavorites(addToFavorites(joke, favorites))
+          }
+        />
+        <AddJokeForm onAddJoke={handleAddJoke} />
+        <div className="flex justify-end">
+          <button onClick={handleNewJokesClick} className="mt-4 py-2 px-4">
+            New Jokes
+          </button>
+        </div>
+        <h2 className="text-2xl font-bold mb-4">Favorite Jokes</h2>
+        <JokeList
+          jokes={favorites}
+          onEditJoke={(joke) => setFavorites(editJoke(joke, favorites))}
+          onDeleteJoke={(joke) => setFavorites(deleteJoke(joke, favorites))}
+        />
+      </div>
     </div>
-    <h2 className="text-2xl font-bold mb-4">Favorite Jokes</h2>
-    <JokeList
-    jokes={favorites}
-    onEditJoke={(joke) => setFavorites(editJoke(joke, favorites))}
-    onDeleteJoke={(joke) => setFavorites(deleteJoke(joke, favorites))}
-    />
-    </div>
-    </div>
-    );
-    };
-    
-    export default App;
+  );
+};
+
+export default App;
