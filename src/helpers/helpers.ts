@@ -22,11 +22,11 @@ export const editJoke = (updatedJoke: Joke, favorites: Joke[]) => {
 };
 
 export const deleteJoke = (jokeToDelete: Joke, favorites: Joke[]) => {
-    const newFavorites = favorites.filter((joke) => joke.id !== jokeToDelete.id);
-    localStorage.setItem("favorites", JSON.stringify(newFavorites));
-    // Remove the deleted joke from cache memory
-    caches.open("dad-jokes-cache").then((cache) => {
-      cache.delete(`https://icanhazdadjoke.com/j/${jokeToDelete.id}.json`);
-    });
-    return newFavorites;
-  };
+  const newFavorites = favorites.filter((joke) => joke.id !== jokeToDelete.id);
+  sessionStorage.setItem("favorites", JSON.stringify(newFavorites));
+  // Remove the deleted joke from cache memory
+  caches.open("dad-jokes-cache").then((cache) => {
+    cache.delete(`https://icanhazdadjoke.com/j/${jokeToDelete.id}.json`);
+  });
+  return newFavorites;
+};
